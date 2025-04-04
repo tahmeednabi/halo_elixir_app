@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+cd -P -- "$(dirname -- "$0")"
+exec ./halo_elixir_app eval HaloElixirApp.Release.migrate
