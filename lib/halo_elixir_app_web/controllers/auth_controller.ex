@@ -8,7 +8,7 @@ defmodule HaloElixirAppWeb.AuthController do
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     user_params = %{
-      username: auth.info.name || auth.info.first_name,
+      username: auth.info.nickname || auth.info.first_name,
       provider: Atom.to_string(auth.provider),
       token: auth.credentials.token,
       fusion_auth_id: auth.uid

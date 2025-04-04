@@ -6,24 +6,26 @@ defmodule HaloElixirAppWeb.RoomLive do
   alias Phoenix.PubSub
 
   @impl true
-  def mount(%{"code" => code} = params, _session, socket) do
-    # Get username from URL params
-    username = params["username"]
+  def mount(%{"code" => code} = params, session, socket) do
+    current_user =
+      case session["user_id"] do
+        nil -> nil
+        user_id -> HaloElixirApp.Accounts.get_user(user_id)
+      end
 
-    # Initialize socket with username from params
+    socket = assign(socket, current_user: current_user)
+
+    username = socket.assigns.current_user.username
     socket = assign(socket, username: username)
 
     if connected?(socket) and username do
       case Chat.get_room_by_code(code) do
         %Room{} = room ->
-          # Subscribe to room events
           PubSub.subscribe(HaloElixirApp.PubSub, "room:#{room.id}")
 
-          # Add user to room
           {:ok, room_user} =
             Chat.create_room_user(%{room_id: room.id, user_name: username})
 
-          # Broadcast user joined event
           PubSub.broadcast(
             HaloElixirApp.PubSub,
             "room:#{room.id}",
@@ -56,7 +58,7 @@ defmodule HaloElixirAppWeb.RoomLive do
     else
       {:ok,
        socket
-       |> put_flash(:error, "Username is required")
+       |> put_flash(:error, "Login to join a room")
        |> push_navigate(to: ~p"/")}
     end
   end
@@ -70,7 +72,7 @@ defmodule HaloElixirAppWeb.RoomLive do
   def handle_event("send_message", %{"message" => message_text}, socket) do
     if String.trim(message_text) != "" do
       room = socket.assigns.room
-      username = socket.assigns.username
+      username = socket.assigns.current_user.username
 
       {:ok, message} =
         Chat.create_message(%{
