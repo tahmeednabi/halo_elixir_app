@@ -19,3 +19,9 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+
+# FusionAuth configuration
+config :ueberauth, Ueberauth.Strategy.Fusion.OAuth,
+  client_id: System.get_env("FUSION_CLIENT_ID") || "your-client-id",
+  client_secret: System.get_env("FUSION_CLIENT_SECRET") || "your-client-secret",
+  fusion_url: System.get_env("FUSION_URL") || "http://localhost:9011"

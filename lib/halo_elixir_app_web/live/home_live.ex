@@ -4,8 +4,19 @@ defmodule HaloElixirAppWeb.HomeLive do
   alias HaloElixirApp.Chat
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, page_title: "Chat App", join_error: nil, username: "")}
+  def mount(_params, session, socket) do
+    current_user =
+      case session["user_id"] do
+        nil -> nil
+        user_id -> HaloElixirApp.Accounts.get_user(user_id)
+      end
+
+    {:ok, assign(socket,
+      page_title: "Chat App",
+      join_error: nil,
+      username: "",
+      current_user: current_user
+    )}
   end
 
   @impl true

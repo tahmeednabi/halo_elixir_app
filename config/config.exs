@@ -61,6 +61,18 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Configure Ueberauth
+config :ueberauth, Ueberauth,
+  providers: [
+    fusion: {Ueberauth.Strategy.Fusion, []}
+  ]
+
+# Configure Ueberauth FusionAuth strategy
+config :ueberauth, Ueberauth.Strategy.Fusion.OAuth,
+  client_id: System.get_env("FUSION_CLIENT_ID"),
+  client_secret: System.get_env("FUSION_CLIENT_SECRET"),
+  fusion_url: System.get_env("FUSION_URL")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

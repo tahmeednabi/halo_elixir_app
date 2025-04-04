@@ -36,3 +36,4 @@ halo_elixir_app-*.tar
 npm-debug.log
 /assets/node_modules/
 
+config/dev.exs

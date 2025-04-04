@@ -1,0 +1,31 @@
+app = "halo-fusionauth"
+primary_region = "syd"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  FUSIONAUTH_APP_MEMORY = "1024M"
+  FUSIONAUTH_APP_RUNTIME_MODE = "production"
+  FUSIONAUTH_DATABASE_URL = "jdbc:postgresql://[DATABASE_HOST]:5432/fusionauth"
+  FUSIONAUTH_DATABASE_USERNAME = "[DATABASE_USER]"
+  FUSIONAUTH_DATABASE_PASSWORD = "[DATABASE_PASSWORD]"
+  FUSIONAUTH_APP_URL = "https://halo-fusionauth.fly.dev"
+
+[http_service]
+  internal_port = 9011
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 1000
+    soft_limit = 500
+
+[[vm]]
+  memory = "1gb"
+  cpu_kind = "shared"
+  cpus = 1

@@ -2,6 +2,19 @@
   <div class="text-center mb-8">
     <h1 class="text-3xl font-bold">Tahmeed's Chat App</h1>
     <p class="text-gray-500 mt-2">Create a new chat room or join an existing one</p>
+    
+    <div class="mt-4">
+      <%= if @current_user do %>
+        <div class="flex justify-center items-center space-x-4">
+          <span class="text-gray-300">Logged in as <%= @current_user.username %></span>
+          <a href="/logout" class="text-red-500 hover:text-red-400">Logout</a>
+        </div>
+      <% else %>
+        <a href="/auth/fusion" class="inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-2">
+          Login with FusionAuth
+        </a>
+      <% end %>
+    </div>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

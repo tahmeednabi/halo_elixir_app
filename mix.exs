@@ -19,7 +19,7 @@ defmodule HaloElixirApp.MixProject do
   def application do
     [
       mod: {HaloElixirApp.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ueberauth, :ueberauth_fusion]
     ]
   end
 
@@ -57,7 +57,11 @@ defmodule HaloElixirApp.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      # Auth dependencies
+      {:ueberauth, "~> 0.6.3"},
+      {:ueberauth_fusion, "~> 0.9"},
+      {:bcrypt_elixir, "~> 3.0"}
     ]
   end
 

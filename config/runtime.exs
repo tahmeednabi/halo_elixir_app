@@ -114,4 +114,12 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  # Configure FusionAuth for production
+  if System.get_env("FUSION_CLIENT_ID") && System.get_env("FUSION_CLIENT_SECRET") && System.get_env("FUSION_URL") do
+    config :ueberauth, Ueberauth.Strategy.Fusion.OAuth,
+      client_id: System.get_env("FUSION_CLIENT_ID"),
+      client_secret: System.get_env("FUSION_CLIENT_SECRET"),
+      fusion_url: System.get_env("FUSION_URL")
+  end
 end
