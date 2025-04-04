@@ -1,0 +1,15 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  html {
+    @apply text-zinc-200;
+  }
+}
+
+@layer components {
+  .hl-input {
+    @apply bg-gray-900 px-3 py-2 border border-gray-700 rounded-l-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500;
+  }
+}
