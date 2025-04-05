@@ -121,7 +121,6 @@ if config_env() == :prod do
       client_id: System.get_env("FUSION_CLIENT_ID"),
       client_secret: System.get_env("FUSION_CLIENT_SECRET"),
       fusion_url: System.get_env("FUSION_URL"),
-      redirect_url: "https://halo-elixir-app.fly.dev/auth/fusion/callback",
-      tenant_id: System.get_env("FUSION_TENANT_ID") || "your-tenant-id"
+      redirect_url: "https://halo-elixir-app.fly.dev/auth/fusion/callback"
   end
 end
