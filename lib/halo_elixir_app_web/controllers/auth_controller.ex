@@ -30,7 +30,12 @@ defmodule HaloElixirAppWeb.AuthController do
   end
 
   def callback(conn, _params) do
-    IO.inspect(conn)
+    # Log the current configuration
+    fusion_config = Application.get_env(:ueberauth, Ueberauth.Strategy.Fusion.OAuth)
+
+    # Log the configuration
+    Logger.info("FusionAuth configuration: #{inspect(fusion_config)}")
+
     conn
     |> put_flash(:error, "Failed to authenticate.")
     |> redirect(to: ~p"/")

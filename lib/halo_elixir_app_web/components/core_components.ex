@@ -116,8 +116,8 @@ defmodule HaloElixirAppWeb.CoreComponents do
       role="alert"
       class={[
         "fixed top-2 right-2 mr-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
-        @kind == :info && "bg-emerald-50 text-emerald-800 ring-emerald-500 fill-cyan-900",
-        @kind == :error && "bg-rose-50 text-rose-900 shadow-md ring-rose-500 fill-rose-900"
+        @kind == :info && "bg-emerald-500/20 text-emerald-400 ring-emerald-400 fill-emerald-400",
+        @kind == :error && "bg-rose-500/20 text-rose-400 shadow-md ring-rose-400 fill-rose-500"
       ]}
       {@rest}
     >

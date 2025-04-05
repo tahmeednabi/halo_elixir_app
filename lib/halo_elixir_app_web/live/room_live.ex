@@ -6,7 +6,8 @@ defmodule HaloElixirAppWeb.RoomLive do
   alias Phoenix.PubSub
 
   @impl true
-  def mount(%{"code" => code} = params, session, socket) do
+  @spec mount(map(), nil | maybe_improper_list() | map(), any()) :: {:ok, map()}
+  def mount(%{"code" => code} = _params, session, socket) do
     current_user =
       case session["user_id"] do
         nil -> nil

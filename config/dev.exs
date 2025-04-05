@@ -88,4 +88,5 @@ config :swoosh, :api_client, false
 config :ueberauth, Ueberauth.Strategy.Fusion.OAuth,
   client_id: System.get_env("FUSION_CLIENT_ID") || "6a18bb0b-6746-430d-b7eb-91aa28c72ecb",
   client_secret: System.get_env("FUSION_CLIENT_SECRET") || "FiZs5riBuR0BcflCrnl6csx2H2QATdADO8gKTW7eYwk",
-  fusion_url: System.get_env("FUSION_URL") || "http://localhost:9011"
+  fusion_url: System.get_env("FUSION_URL") || "http://localhost:9011",
+  redirect_url: "https://halo-elixir-app.fly.dev/auth/fusion/callback"
