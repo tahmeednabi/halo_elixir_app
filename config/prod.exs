@@ -24,4 +24,8 @@ config :logger, level: :info
 config :ueberauth, Ueberauth.Strategy.Fusion.OAuth,
   client_id: System.get_env("FUSION_CLIENT_ID") || "your-client-id",
   client_secret: System.get_env("FUSION_CLIENT_SECRET") || "your-client-secret",
-  fusion_url: System.get_env("FUSION_URL") || "http://localhost:9011"
+  fusion_url: System.get_env("FUSION_URL") || "http://localhost:9011",
+  site: System.get_env("FUSION_URL") || "http://localhost:9011",
+  authorize_url: "/oauth2/authorize",
+  token_url: "/oauth2/token",
+  redirect_uri: "https://halo-elixir-app.fly.dev/auth/fusion/callback"
