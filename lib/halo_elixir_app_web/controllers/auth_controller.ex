@@ -30,6 +30,7 @@ defmodule HaloElixirAppWeb.AuthController do
   end
 
   def callback(conn, _params) do
+    IO.inspect(conn)
     conn
     |> put_flash(:error, "Failed to authenticate.")
     |> redirect(to: ~p"/")
