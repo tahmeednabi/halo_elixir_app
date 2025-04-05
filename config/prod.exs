@@ -26,5 +26,5 @@ config :ueberauth, Ueberauth.Strategy.Fusion.OAuth,
   client_secret: System.get_env("FUSION_CLIENT_SECRET") || "your-client-secret",
   fusion_url: System.get_env("FUSION_URL") || "http://localhost:9011",
   site: System.get_env("FUSION_URL") || "http://localhost:9011",
-  token_url: "#{System.get_env("FUSION_URL")}/oauth2/token",
+  token_url: "https://halo-fusionauth.fly.dev/oauth2/token",
   redirect_uri: "https://halo-elixir-app.fly.dev/auth/fusion/callback"
